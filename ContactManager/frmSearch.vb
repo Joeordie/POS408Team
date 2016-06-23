@@ -9,7 +9,7 @@ Public Class frmSearch
         Me.Close()
     End Sub
     'Validates input so that only numbers or a "." can be entered in the text box and also allows the user to use the backspace key to correct their input if they make a mistake
-    'All other keystrokes will be ignored
+    'All other keystrokes will be ignored.
     'Mead, G. (2009). How to Restrict TextBox Input. Retrieved from http://vbcity.com/blogs/xtab/archive/2009/06/08/restrictiong-textbox-input.aspx
     Private Sub tbxPhone_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles tbxPhone.KeyPress
         e.Handled = True
