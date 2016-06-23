@@ -2,25 +2,7 @@
 
 
 Public Class frmSearch
-    Private Sub tbxFirstName_Click(sender As Object, e As EventArgs) Handles tbxFirstName.Click
-
-    End Sub
-
-    Private Sub tbxLastName_Click(sender As Object, e As EventArgs) Handles tbxLastName.Click
-
-    End Sub
-
-    Private Sub grpPersonal_Enter(sender As Object, e As EventArgs) Handles grpPersonal.Enter
-
-    End Sub
-
-    Private Sub grpCompany_Enter(sender As Object, e As EventArgs) Handles grpCompany.Enter
-
-    End Sub
-
-    Private Sub frmSearch_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
-    End Sub
+    
 
     Private Sub btnBack_Click(sender As Object, e As EventArgs) Handles btnBack.Click
         My.Forms.frmStart.Show()
@@ -55,7 +37,7 @@ Public Class frmSearch
         e.Handled = True
         If e.KeyChar Like "[abcdefghijklmnopqrstuvwxyz]" _
             Or e.KeyChar = Chr(&H8) Then
-            'following code instructs the application to not accept the keystroke because it does not match the required input range
+            'following code instructs the application to not accept the keystroke because it does not match the required input range.
             e.Handled = False
         End If
     End Sub
