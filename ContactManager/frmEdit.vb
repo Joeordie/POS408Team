@@ -6,6 +6,9 @@
     'strCompany name will be allowed to have all numbers, letters and special characters due to potential naming conventions of the company
     'values will be obtained from the textbox data entered by the user if
     'a new entry is being created and will be populated by the Database if queried in the search page as well as entered by the user for the search string
+    'strFirstname, strLastName, strEmail and strCompanyName can be up to 25 characters, strPhone can be up to 18 characters 
+    '(to allow for extentions and international calling
+    'strCompanyName can be up to 75 characters
 
     Dim strPhone As String
     Dim strFirstName As String

@@ -33,7 +33,7 @@ Partial Class frmStart
         Me.btnNew.Name = "btnNew"
         Me.btnNew.Size = New System.Drawing.Size(91, 60)
         Me.btnNew.TabIndex = 0
-        Me.btnNew.Text = "New Record"
+        Me.btnNew.Text = "New Record / Edit Record"
         Me.btnNew.UseVisualStyleBackColor = True
         '
         'BtnSearch

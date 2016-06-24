@@ -84,6 +84,7 @@ Partial Class frmSearch
         'tbxPhone
         '
         Me.tbxPhone.Location = New System.Drawing.Point(427, 89)
+        Me.tbxPhone.MaxLength = 18
         Me.tbxPhone.Name = "tbxPhone"
         Me.tbxPhone.Size = New System.Drawing.Size(246, 22)
         Me.tbxPhone.TabIndex = 6
@@ -101,6 +102,7 @@ Partial Class frmSearch
         'tbxEmail
         '
         Me.tbxEmail.Location = New System.Drawing.Point(79, 88)
+        Me.tbxEmail.MaxLength = 25
         Me.tbxEmail.Name = "tbxEmail"
         Me.tbxEmail.Size = New System.Drawing.Size(246, 22)
         Me.tbxEmail.TabIndex = 5
@@ -108,6 +110,7 @@ Partial Class frmSearch
         'tbxLastName
         '
         Me.tbxLastName.Location = New System.Drawing.Point(427, 25)
+        Me.tbxLastName.MaxLength = 25
         Me.tbxLastName.Name = "tbxLastName"
         Me.tbxLastName.Size = New System.Drawing.Size(246, 22)
         Me.tbxLastName.TabIndex = 4
@@ -115,6 +118,7 @@ Partial Class frmSearch
         'tbxFirstName
         '
         Me.tbxFirstName.Location = New System.Drawing.Point(79, 25)
+        Me.tbxFirstName.MaxLength = 25
         Me.tbxFirstName.Name = "tbxFirstName"
         Me.tbxFirstName.Size = New System.Drawing.Size(246, 22)
         Me.tbxFirstName.TabIndex = 3
@@ -147,6 +151,7 @@ Partial Class frmSearch
         'tbxCompanyAddr
         '
         Me.tbxCompanyAddr.Location = New System.Drawing.Point(12, 138)
+        Me.tbxCompanyAddr.MaxLength = 75
         Me.tbxCompanyAddr.Multiline = True
         Me.tbxCompanyAddr.Name = "tbxCompanyAddr"
         Me.tbxCompanyAddr.Size = New System.Drawing.Size(409, 148)
@@ -155,6 +160,7 @@ Partial Class frmSearch
         'tbxCompanyName
         '
         Me.tbxCompanyName.Location = New System.Drawing.Point(12, 66)
+        Me.tbxCompanyName.MaxLength = 25
         Me.tbxCompanyName.Name = "tbxCompanyName"
         Me.tbxCompanyName.Size = New System.Drawing.Size(313, 22)
         Me.tbxCompanyName.TabIndex = 7
