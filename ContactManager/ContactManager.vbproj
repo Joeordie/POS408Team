@@ -84,6 +84,12 @@
     <Compile Include="frmEdit.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmMultiResult.Designer.vb">
+      <DependentUpon>frmMultiResult.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmMultiResult.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmStart.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -119,6 +125,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmEdit.resx">
       <DependentUpon>frmEdit.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMultiResult.resx">
+      <DependentUpon>frmMultiResult.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmStart.resx">
       <DependentUpon>frmStart.vb</DependentUpon>
