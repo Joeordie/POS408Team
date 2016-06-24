@@ -218,7 +218,7 @@ Partial Class frmEdit
         Me.Controls.Add(Me.grpCompany)
         Me.Controls.Add(Me.grpPersonal)
         Me.Name = "frmEdit"
-        Me.Text = "Form1"
+        Me.Text = "Edit User Database"
         Me.grpPersonal.ResumeLayout(False)
         Me.grpPersonal.PerformLayout()
         Me.grpCompany.ResumeLayout(False)

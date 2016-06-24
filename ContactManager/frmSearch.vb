@@ -2,8 +2,17 @@
 
 
 Public Class frmSearch
-    
+    'Declares variables that will be used  values will be obtained from the textbox data entered by the user if
+    'a new entry is being created and will be populated by the Database if queried in the search page as well as entered by the user for the search string
+    Dim intPhone As Integer
+    Dim strFirstName As String
+    Dim strLastName As String
+    Dim stremail As String
+    Dim strCompanyName As String
+    Dim strCompanyAddress As String
 
+
+    'Clicking back button closes frmSearch and opens frmStart
     Private Sub btnBack_Click(sender As Object, e As EventArgs) Handles btnBack.Click
         My.Forms.frmStart.Show()
         Me.Close()

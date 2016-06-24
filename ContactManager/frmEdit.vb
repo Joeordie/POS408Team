@@ -1,5 +1,14 @@
 ﻿Public Class frmEdit
 
+    'Declares variables that will be used
+    Dim intPhone As Integer
+    Dim strFirstName As String
+    Dim strLastName As String
+    Dim stremail As String
+    Dim strCompanyName As String
+    Dim strCompanyAddress As String
+
+
     Private Sub frmEdit_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
     End Sub
