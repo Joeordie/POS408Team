@@ -48,16 +48,23 @@ Public Class frmSearch
     End Sub
 
     Private Sub querytransport()
-        'lets load this sucker up with the QuerySeyClass!
-
-        Dim blueprint As QuerySet
-        blueprint = New QuerySet
-
-
-        blueprint.Loader(tbxFirstName.Text, tbxLastName.Text, tbxEmail.Text, _
+        'lets load this sucker up with the QuerySeyClass! 
+        'Construction Phase
+        Dim queryset As New QuerySet
+        'Load Phase!
+        queryset.Loader(tbxFirstName.Text, tbxLastName.Text, tbxEmail.Text, _
             tbxPhone.Text, tbxCompanyName.Text)
+        'Transport Phase!
+        Dim intSuccess As Integer
 
-        'QueryModule.Input(blueprint)
+        intSuccess = QueryModule.input(queryset)
+        If intSuccess = 0 Then
+            'Do nothing it worked!
+        Else
+            MessageBox.Show("Ut-oh you have recieved an error code: " & intSuccess)
+        End If
+
+
 
     End Sub
 
@@ -69,11 +76,12 @@ End Class
 
 Public Class QuerySet
     'Declare Class Attributes
-    Dim strFName As String
-    Dim strLName As String
-    Dim strEmail As String
-    Dim strPhone As String
-    Dim strCompanyName As String
+    Public strFName As String
+    Public strLName As String
+    Public strEmail As String
+    Public strPhone As String
+    Public strCompanyName As String
+    Public strPurpose As String = "search"
 
     'Routine to load variables
     Public Sub Loader(F As String, L As String, E As String, P As String, CN As String)

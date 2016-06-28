@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class Form1
+Partial Class frmMulti
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -31,7 +31,7 @@ Partial Class Form1
         Me.lstMultipleResults.FormattingEnabled = True
         Me.lstMultipleResults.Location = New System.Drawing.Point(27, 44)
         Me.lstMultipleResults.Name = "lstMultipleResults"
-        Me.lstMultipleResults.Size = New System.Drawing.Size(687, 407)
+        Me.lstMultipleResults.Size = New System.Drawing.Size(684, 355)
         Me.lstMultipleResults.TabIndex = 0
         '
         'lblMultiResult
@@ -43,14 +43,14 @@ Partial Class Form1
         Me.lblMultiResult.TabIndex = 1
         Me.lblMultiResult.Text = "Please Select Record to View"
         '
-        'Form1
+        'frmMulti
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(744, 476)
         Me.Controls.Add(Me.lblMultiResult)
         Me.Controls.Add(Me.lstMultipleResults)
-        Me.Name = "Form1"
+        Me.Name = "frmMulti"
         Me.Text = "Form1"
         Me.ResumeLayout(False)
         Me.PerformLayout()
