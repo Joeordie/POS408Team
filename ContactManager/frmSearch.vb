@@ -43,4 +43,45 @@ Public Class frmSearch
     End Sub
 
     
+    Private Sub frmSearch_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+    End Sub
+
+    Private Sub querytransport()
+        'lets load this sucker up with the QuerySeyClass!
+
+        Dim blueprint As QuerySet
+        blueprint = New QuerySet
+
+
+        blueprint.Loader(tbxFirstName.Text, tbxLastName.Text, tbxEmail.Text, _
+            tbxPhone.Text, tbxCompanyName.Text)
+
+        'QueryModule.Input(blueprint)
+
+    End Sub
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        querytransport()
+    End Sub
+End Class
+
+
+Public Class QuerySet
+    'Declare Class Attributes
+    Dim strFName As String
+    Dim strLName As String
+    Dim strEmail As String
+    Dim strPhone As String
+    Dim strCompanyName As String
+
+    'Routine to load variables
+    Public Sub Loader(F As String, L As String, E As String, P As String, CN As String)
+        strFName = F
+        strLName = L
+        strEmail = E
+        strPhone = P
+        strCompanyName = CN
+    End Sub
+
 End Class

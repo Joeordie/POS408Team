@@ -24,6 +24,7 @@ Partial Class frmStart
     Private Sub InitializeComponent()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
+        Me.btnDataBase = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'Button1
@@ -44,11 +45,21 @@ Partial Class frmStart
         Me.Button2.Text = "Search"
         Me.Button2.UseVisualStyleBackColor = True
         '
+        'btnDataBase
+        '
+        Me.btnDataBase.Location = New System.Drawing.Point(206, 12)
+        Me.btnDataBase.Name = "btnDataBase"
+        Me.btnDataBase.Size = New System.Drawing.Size(91, 60)
+        Me.btnDataBase.TabIndex = 2
+        Me.btnDataBase.Text = "DataBase"
+        Me.btnDataBase.UseVisualStyleBackColor = True
+        '
         'frmStart
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(214, 91)
+        Me.ClientSize = New System.Drawing.Size(321, 92)
+        Me.Controls.Add(Me.btnDataBase)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Button1)
         Me.Name = "frmStart"
@@ -59,4 +70,5 @@ Partial Class frmStart
 
     Friend WithEvents Button1 As Button
     Friend WithEvents Button2 As Button
+    Friend WithEvents btnDataBase As System.Windows.Forms.Button
 End Class
