@@ -11,14 +11,11 @@
             intExitCode = objSearchBuild.Load(QuerySet)
         ElseIf QuerySet.strPurpose = "write" Then
             'Do something with WriterBuild Class
-            intExitCode = 1
-            MessageBox.Show("writing has not been implemented yet")
-        ElseIf QuerySet.strPurpose = "display" Then
-            intExitCode = 1
-            MessageBox.Show("display has not been implemented yet")
-        ElseIf QuerySet.strPurpose = "multi" Then
-            intExitCode = 1
-            MessageBox.Show("multi display has not been implemented yet")
+            Dim objWriteBuild As New WriteBuild
+            intExitCode = objWriteBuild.Loader(QuerySet)
+            'ElseIf QuerySet.strPurpose = "display" Then
+            '    intExitCode = 1
+            '    MessageBox.Show("display has not been implemented yet")
         End If
 
         Return intExitCode
@@ -49,23 +46,31 @@
             'These are the variables we have to stearch by
             Dim strSearchField As String
             Dim StrSearchCriterion As String
+            'Repeating If for length of Fields, in order of operations'
+            'Then set the appropriate Database Field name and pass criteron to SQL Like Statement
+            'Trim Statements are to pull off whitespace
             If Len(QuerySet.strPhone) > 0 Then
                 strSearchField = "PhoneNumber"
                 StrSearchCriterion = Trim(QuerySet.strPhone)
+            ElseIf Len(QuerySet.strEmail) > 0 Then
+                strSearchField = "Email"
+                StrSearchCriterion = Trim(QuerySet.strEmail)
             ElseIf Len(QuerySet.strLName) > 0 Then
                 strSearchField = "LastName"
-                StrSearchCriterion = QuerySet.strLName
+                StrSearchCriterion = Trim(QuerySet.strLName)
             ElseIf Len(QuerySet.strFName) > 0 Then
                 strSearchField = "FirstName"
-                StrSearchCriterion = QuerySet.strFName
+                StrSearchCriterion = Trim(QuerySet.strFName)
             ElseIf Len(QuerySet.strCompanyName) > 0 Then
                 strSearchField = "Company"
-                StrSearchCriterion = QuerySet.strCompanyName
+                StrSearchCriterion = Trim(QuerySet.strCompanyName)
             Else
+                'If nothing is entered its cause Mr. Kandan is trying to break the application
                 MessageBox.Show("Try again bub no searchable Fields Entered")
             End If
-
+            'SQL Statement Constructor
             strSQLStatement = ("SELECT * FROM Table1 WHERE " & strSearchField & " LIKE '" & StrSearchCriterion & "%';")
+            'Send to database connection
             searchConnection.send(strSQLStatement)
 
         End Sub
@@ -80,7 +85,7 @@
     End Class
 
     Public Class WriteBuild
-        Public Function Load(QuerySet As Object) As Integer
+        Public Function Loader(QuerySet As Object) As Integer
             Dim intExitCode As Integer = 0
             MessageBox.Show("you are writing")
             Return intExitCode
@@ -133,7 +138,7 @@
                     frmSearch.Hide()
                     frmMulti.Show()
                 Else
-                    'Display Set
+                    Dim objDisplaySet = New DisplaySet
                 End If
             Catch ex As Exception
                 MessageBox.Show("No Records Available")
