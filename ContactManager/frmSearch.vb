@@ -76,6 +76,7 @@ End Class
 
 Public Class QuerySet
     'Declare Class Attributes
+    Public UUID As Integer
     Public strFName As String
     Public strLName As String
     Public strEmail As String

@@ -49,7 +49,10 @@
             'Repeating If for length of Fields, in order of operations'
             'Then set the appropriate Database Field name and pass criteron to SQL Like Statement
             'Trim Statements are to pull off whitespace
-            If Len(QuerySet.strPhone) > 0 Then
+            If QuerySet.UUID > 0 Then
+                strSearchField = "ID"
+                StrSearchCriterion = QuerySet.UUID
+            ElseIf Len(QuerySet.strPhone) > 0 Then
                 strSearchField = "PhoneNumber"
                 StrSearchCriterion = Trim(QuerySet.strPhone)
             ElseIf Len(QuerySet.strEmail) > 0 Then
@@ -68,8 +71,15 @@
                 'If nothing is entered its cause Mr. Kandan is trying to break the application
                 MessageBox.Show("Try again bub no searchable Fields Entered")
             End If
-            'SQL Statement Constructor
-            strSQLStatement = ("SELECT * FROM Table1 WHERE " & strSearchField & " LIKE '" & StrSearchCriterion & "%';")
+            If strSearchField = "ID" Then
+                'SQL Statement Constructor
+                strSQLStatement = ("SELECT * FROM Table1 WHERE " & strSearchField & " " & StrSearchCriterion & ";")
+
+            Else
+                'SQL Statement Constructor
+                strSQLStatement = ("SELECT * FROM Table1 WHERE " & strSearchField & " LIKE '" & StrSearchCriterion & "%';")
+
+            End If
             'Send to database connection
             searchConnection.send(strSQLStatement)
 
@@ -127,7 +137,7 @@
                     'for loop to write out every record 
                     For r = 0 To intlastRow
                         Dim rownum As Integer = Convert.ToInt16(r)
-                        For c = 1 To 3
+                        For c = 0 To 3
                             strResultLine = strResultLine & (objDataSet.Tables("SearchResultSet").Rows(r).Item(c) & vbTab)
                         Next
                         frmMulti.ResultLoad(strResultLine)
@@ -139,6 +149,16 @@
                     frmMulti.Show()
                 Else
                     Dim objDisplaySet = New DisplaySet
+
+                    Dim intUUID As Integer = objDataSet.Tables("SearchResultSet").Rows(0).Item(0)
+                    Dim strFName As String = objDataSet.Tables("SearchResultSet").Rows(0).Item(1)
+                    Dim strLName As String = objDataSet.Tables("SearchResultSet").Rows(0).Item(2)
+                    Dim strCompanyName As String = objDataSet.Tables("SearchResultSet").Rows(0).Item(3)
+                    Dim strPhone As String = objDataSet.Tables("SearchResultSet").Rows(0).Item(4)
+                    Dim strEmail As String = objDataSet.Tables("SearchResultset").Rows(0).Item(5)
+                    Dim strCompAddress As String = objDataSet.Tables("SearchResultSet").Rows(0).Item(6) & vbNewLine & objDataSet.Tables("SearchResultSet").Rows(0).Item(7)
+                    objDisplaySet.Loader(intUUID, strFName, strLName, strEmail, strPhone, strCompanyName, strCompAddress)
+                    frmEdit.Display(objDisplaySet)
                 End If
             Catch ex As Exception
                 MessageBox.Show("No Records Available")

@@ -1,5 +1,7 @@
 ﻿Public Class frmEdit
 
+    Dim intContactUUID As Integer
+
     Private Sub frmEdit_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
     End Sub
@@ -16,7 +18,42 @@
     Private Sub btnRemove_Click(sender As Object, e As EventArgs) Handles btnRemove.Click
 
     End Sub
+
+    Private Sub querytransport()
+        'lets load this sucker up with the QuerySeyClass! 
+        'Construction Phase
+        Dim queryset As New QuerySet
+        'Load Phase!
+        queryset.Loader(txtFirstName.Text, txtLastName.Text, TxtEmail.Text, txtPhone.Text, txtCompanyName.Text)
+        'Transport Phase!
+        Dim intSuccess As Integer
+
+        intSuccess = QueryModule.input(queryset)
+        If intSuccess = 0 Then
+            'Do nothing it worked!
+        Else
+            MessageBox.Show("Ut-oh you have recieved an error code: " & intSuccess)
+        End If
+    End Sub
+
+    Public Function Display(DisplaySet As Object)
+        Dim intExitCode As Integer = 1
+        If DisplaySet.intUUID > -1 Then
+            txtFirstName.Text = DisplaySet.strFName
+            txtLastName.Text = DisplaySet.strLName
+            'etc....
+            'Repeat this mo over and over till you have put all the data on the screen
+            ' look below at DisplaySet if you want to see what the object's attributes are. 
+            intContactUUID = DisplaySet.intUUID
+            intExitCode = 0
+        End If
+
+        Return intExitCode
+    End Function
+
+
 End Class
+
 
 Public Class DisplaySet
     'Declare Class Attributes
@@ -26,15 +63,20 @@ Public Class DisplaySet
     Public strEmail As String
     Public strPhone As String
     Public strCompanyName As String
+    Public strCompanyAddress As String
     Public strPurpose As String = "display"
 
     'Routine to load variables
-    Public Sub Loader(I As Integer, F As String, L As String, E As String, P As String, CN As String)
+    Public Sub Loader(I As Integer, F As String, L As String, E As String, P As String, CN As String, CA As String)
         intUUID = I
         strFName = F
         strLName = L
         strEmail = E
         strPhone = P
         strCompanyName = CN
+        strCompanyAddress = CA
     End Sub
+
+
+
 End Class
