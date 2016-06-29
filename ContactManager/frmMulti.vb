@@ -39,5 +39,5 @@
 
         My.Forms.frmSearch.Show()
 
-
+    End Sub
 End Class
