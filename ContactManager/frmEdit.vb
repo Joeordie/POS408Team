@@ -16,6 +16,11 @@
     End Sub
 
     Private Sub btnRemove_Click(sender As Object, e As EventArgs) Handles btnRemove.Click
+        If Convert.ToInt16(tbxUUID.Text) > 0 Then
+
+        ElseIf Convert.ToInt16(tbxUUID.Text) <= 0 Then
+            MessageBox.Show("there is no record selected")
+        End If
 
     End Sub
 
@@ -39,13 +44,17 @@
     Public Function Display(DisplaySet As Object)
         Dim intExitCode As Integer = 1
         If DisplaySet.intUUID > -1 Then
+            tbxUUID.Text = DisplaySet.intUUID
             txtFirstName.Text = DisplaySet.strFName
             txtLastName.Text = DisplaySet.strLName
-            'etc....
-            'Repeat this mo over and over till you have put all the data on the screen
-            ' look below at DisplaySet if you want to see what the object's attributes are. 
+            TxtEmail.Text = DisplaySet.strEmail
+            txtPhone.Text = DisplaySet.strPhone
+            txtCompanyName.Text = DisplaySet.strCompanyName
+            txtCompanyAddr.Text = DisplaySet.strCompanyAddress
+            'Might not be needed now
             intContactUUID = DisplaySet.intUUID
             intExitCode = 0
+            Me.Show()
         End If
 
         Return intExitCode

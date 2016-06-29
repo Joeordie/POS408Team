@@ -24,7 +24,7 @@ Public Class frmSearch
     'Mead, G. (2009). How to Restrict TextBox Input. Retrieved from http://vbcity.com/blogs/xtab/archive/2009/06/08/restrictiong-textbox-input.aspx
     Private Sub tbxFirstName_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles tbxFirstName.KeyPress
         e.Handled = True
-        If e.KeyChar Like "[abcdefghijklmnopqrstuvwxyz]" _
+        If e.KeyChar Like "[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ]" _
             Or e.KeyChar = Chr(&H8) Then
             'following code instructs the application to not accept the keystroke because it does not match the required input range
             e.Handled = False
@@ -35,7 +35,7 @@ Public Class frmSearch
     'Mead, G. (2009). How to Restrict TextBox Input. Retrieved from http://vbcity.com/blogs/xtab/archive/2009/06/08/restrictiong-textbox-input.aspx
     Private Sub tbxLastName_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles tbxLastName.KeyPress
         e.Handled = True
-        If e.KeyChar Like "[abcdefghijklmnopqrstuvwxyz]" _
+        If e.KeyChar Like "[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ]" _
             Or e.KeyChar = Chr(&H8) Then
             'following code instructs the application to not accept the keystroke because it does not match the required input range.
             e.Handled = False
@@ -60,6 +60,7 @@ Public Class frmSearch
         intSuccess = QueryModule.input(queryset)
         If intSuccess = 0 Then
             'Do nothing it worked!
+            Me.Hide()
         Else
             MessageBox.Show("Ut-oh you have recieved an error code: " & intSuccess)
         End If

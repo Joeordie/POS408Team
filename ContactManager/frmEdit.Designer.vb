@@ -39,6 +39,7 @@ Partial Class frmEdit
         Me.btnRemove = New System.Windows.Forms.Button()
         Me.btnEdit = New System.Windows.Forms.Button()
         Me.btnBack = New System.Windows.Forms.Button()
+        Me.tbxUUID = New System.Windows.Forms.TextBox()
         Me.grpPersonal.SuspendLayout()
         Me.grpCompany.SuspendLayout()
         Me.SuspendLayout()
@@ -207,11 +208,20 @@ Partial Class frmEdit
         Me.btnBack.Text = "Back"
         Me.btnBack.UseVisualStyleBackColor = True
         '
+        'tbxUUID
+        '
+        Me.tbxUUID.Location = New System.Drawing.Point(569, 237)
+        Me.tbxUUID.Name = "tbxUUID"
+        Me.tbxUUID.Size = New System.Drawing.Size(100, 20)
+        Me.tbxUUID.TabIndex = 13
+        Me.tbxUUID.Visible = False
+        '
         'frmEdit
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(744, 476)
+        Me.Controls.Add(Me.tbxUUID)
         Me.Controls.Add(Me.btnBack)
         Me.Controls.Add(Me.btnEdit)
         Me.Controls.Add(Me.btnRemove)
@@ -224,6 +234,7 @@ Partial Class frmEdit
         Me.grpCompany.ResumeLayout(False)
         Me.grpCompany.PerformLayout()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
     Friend WithEvents grpPersonal As System.Windows.Forms.GroupBox
@@ -243,4 +254,5 @@ Partial Class frmEdit
     Friend WithEvents btnRemove As System.Windows.Forms.Button
     Friend WithEvents btnEdit As System.Windows.Forms.Button
     Friend WithEvents btnBack As System.Windows.Forms.Button
+    Friend WithEvents tbxUUID As System.Windows.Forms.TextBox
 End Class
