@@ -16,9 +16,15 @@
     End Sub
 
     Private Sub btnRemove_Click(sender As Object, e As EventArgs) Handles btnRemove.Click
-        If Convert.ToInt16(tbxUUID.Text) > 0 Then
-
-        ElseIf Convert.ToInt16(tbxUUID.Text) <= 0 Then
+        'Convert.ToInt16(tbxUUID.Text)
+        If intContactUUID > 0 Then
+            Dim queryset As New QuerySet
+            queryset.UUID = intContactUUID
+            queryset.strPurpose = "delete"
+            Me.Hide()
+            frmSearch.Show()
+            QueryModule.input(queryset)
+        ElseIf intContactUUID <= 0 Then
             MessageBox.Show("there is no record selected")
         End If
 

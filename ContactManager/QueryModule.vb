@@ -16,7 +16,9 @@
         ElseIf QuerySet.strPurpose = "delete" Then
             intExitCode = 1
             Dim intUUID As Integer = QuerySet.UUID
-            Dim strSQLStatement As String = ("DELETE * FROM Table1 WHERE " & "ID" & "=" & intUUID & ";")
+            Dim strSQLStatement As String = ("DELETE FROM Table1 WHERE " & "ID" & "=" & intUUID & ";")
+            Dim SQLInterface As New SQLInterface
+            SQLInterface.send(strSQLStatement, "delete")
         End If
 
         Return intExitCode
@@ -119,11 +121,12 @@
             dbConnection.ConnectionString = strDBConDetails
             'Open Connection
             dbConnection.Open()
-            'Create adapter send sQL statement 
-            objDataAdapter = New OleDb.OleDbDataAdapter(strSQLStatement, dbConnection)
             'Close Database so we dont let flies in.
-            dbConnection.Close()
+
             If strPurpose = "read" Then
+                'Create adapter send sQL statement 
+                objDataAdapter = New OleDb.OleDbDataAdapter(strSQLStatement, dbConnection)
+                dbConnection.Close()
                 Try
                     'Load DataSet with results
                     objDataAdapter.Fill(objDataSet, "SearchResultSet")
@@ -141,16 +144,23 @@
                             For c = 0 To 3
                                 strResultLine = strResultLine & (objDataSet.Tables("SearchResultSet").Rows(r).Item(c) & vbTab)
                             Next
+                            'After each record is constructed send to frmMulti
                             frmMulti.ResultLoad(strResultLine)
                             strResultLine = ""
                         Next
                         frmMulti.ResultLoad(strResultLine)
+                        'clear resutline
                         strResultLine = ""
+                        'hide search form
                         frmSearch.Hide()
+                        'show multi result form
                         frmMulti.Show()
                     Else
+                        'Else is for single or <0 recordindex
+                        'Create new DisplaySet
                         Dim objDisplaySet = New DisplaySet
-
+                        'load record set Loader Sub will not work directly because of the objDataSet.Tables reference
+                        'must be cast :(
                         Dim intUUID As Integer = objDataSet.Tables("SearchResultSet").Rows(0).Item(0)
                         Dim strFName As String = objDataSet.Tables("SearchResultSet").Rows(0).Item(1)
                         Dim strLName As String = objDataSet.Tables("SearchResultSet").Rows(0).Item(2)
@@ -158,16 +168,26 @@
                         Dim strPhone As String = objDataSet.Tables("SearchResultSet").Rows(0).Item(4)
                         Dim strEmail As String = objDataSet.Tables("SearchResultset").Rows(0).Item(5)
                         Dim strCompAddress As String = objDataSet.Tables("SearchResultSet").Rows(0).Item(6) & vbNewLine & objDataSet.Tables("SearchResultSet").Rows(0).Item(7)
+                        'load object up!!!!
                         objDisplaySet.Loader(intUUID, strFName, strLName, strEmail, strPhone, strCompanyName, strCompAddress)
+                        'call display function "Get it Out of Here! -Richard Stallman-
                         frmEdit.Display(objDisplaySet)
                     End If
                 Catch ex As Exception
-                    MessageBox.Show("No Records Available")
-                    frmSearch.Show()
+                    MessageBox.Show("No Records Available") 'Not the greatest pop up but it so far has been accurate
+                    frmSearch.Show() 'Since you couldnt get it done show the search form again
                 End Try
             ElseIf strPurpose = "write" Then
                 MessageBox.Show("you should have written to the database")
             ElseIf strPurpose = "delete" Then
+                'This is different than SQL Query functions above.
+                'Create a objCmd object with the SQL statement created in the QueryModule.input() and attach the approprate dbConnection variable crafted in this class
+                Dim objCmd As New OleDb.OleDbCommand(strSQLStatement, dbConnection)
+                'Send command and EXPECT NO RETURN!!!!
+                objCmd.ExecuteNonQuery()
+                'Close dbConnection so flies don't get in
+                dbConnection.Close()
+                'Notify user of success!
                 MessageBox.Show("boom!!! you deleted that junk son!")
             End If
 
