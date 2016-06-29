@@ -1,6 +1,6 @@
 ﻿Public Class frmMulti
 
-   
+
 
     Public Sub clear()
         lstMultipleResults.Items.Clear()
@@ -11,7 +11,7 @@
     End Sub
 
 
-   
+
     Private Sub btnBack_Click(sender As Object, e As EventArgs) Handles btnMultiBack.Click
         My.Forms.frmSearch.Show()
         Me.Close()
@@ -24,12 +24,16 @@
             'If ListIndex is -1, nothing selected
             MsgBox("Nothing was selected!")
         Else
-            'If ListIndex not -1 inform user what was selected
-            MsgBox("You selected " & lstMultipleResults.SelectedIndex.ToString)
+            Dim strSelectedUUID = Trim(lstMultipleResults.SelectedItem.ToString.Substring(0, 2))
+            Dim intSelectedUUID = Convert.ToInt16(strSelectedUUID)
+            Dim queryset As New QuerySet
+            queryset.UUID = intSelectedUUID
+            QueryModule.input(queryset)
+            Me.Hide()
         End If
 
     End Sub
 
-   
+
 
 End Class

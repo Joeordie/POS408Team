@@ -73,7 +73,7 @@
             End If
             If strSearchField = "ID" Then
                 'SQL Statement Constructor
-                strSQLStatement = ("SELECT * FROM Table1 WHERE " & strSearchField & " " & StrSearchCriterion & ";")
+                strSQLStatement = ("SELECT * FROM Table1 WHERE " & strSearchField & "=" & StrSearchCriterion & ";")
 
             Else
                 'SQL Statement Constructor
