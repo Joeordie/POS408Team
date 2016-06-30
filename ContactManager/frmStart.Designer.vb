@@ -22,53 +22,72 @@ Partial Class frmStart
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.Button2 = New System.Windows.Forms.Button()
+        Me.btnNew = New System.Windows.Forms.Button()
+        Me.btnSearch = New System.Windows.Forms.Button()
         Me.btnDataBase = New System.Windows.Forms.Button()
+        Me.ofdDatabase = New System.Windows.Forms.OpenFileDialog()
+        Me.lblFilePath = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
-        'Button1
+        'btnNew
         '
-        Me.Button1.Location = New System.Drawing.Point(12, 12)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(91, 60)
-        Me.Button1.TabIndex = 0
-        Me.Button1.Text = "New"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.btnNew.Location = New System.Drawing.Point(12, 12)
+        Me.btnNew.Name = "btnNew"
+        Me.btnNew.Size = New System.Drawing.Size(91, 60)
+        Me.btnNew.TabIndex = 0
+        Me.btnNew.Text = "New"
+        Me.btnNew.UseVisualStyleBackColor = True
         '
-        'Button2
+        'btnSearch
         '
-        Me.Button2.Location = New System.Drawing.Point(109, 12)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(91, 60)
-        Me.Button2.TabIndex = 1
-        Me.Button2.Text = "Search"
-        Me.Button2.UseVisualStyleBackColor = True
+        Me.btnSearch.Location = New System.Drawing.Point(218, 12)
+        Me.btnSearch.Name = "btnSearch"
+        Me.btnSearch.Size = New System.Drawing.Size(91, 60)
+        Me.btnSearch.TabIndex = 1
+        Me.btnSearch.Text = "Search"
+        Me.btnSearch.UseVisualStyleBackColor = True
         '
         'btnDataBase
         '
-        Me.btnDataBase.Location = New System.Drawing.Point(206, 12)
+        Me.btnDataBase.Location = New System.Drawing.Point(115, 74)
         Me.btnDataBase.Name = "btnDataBase"
         Me.btnDataBase.Size = New System.Drawing.Size(91, 60)
         Me.btnDataBase.TabIndex = 2
-        Me.btnDataBase.Text = "DataBase"
+        Me.btnDataBase.Text = "DataBase File Select"
         Me.btnDataBase.UseVisualStyleBackColor = True
+        '
+        'ofdDatabase
+        '
+        Me.ofdDatabase.FileName = "OpenFileDialog1"
+        '
+        'lblFilePath
+        '
+        Me.lblFilePath.AutoSize = True
+        Me.lblFilePath.Location = New System.Drawing.Point(12, 152)
+        Me.lblFilePath.Name = "lblFilePath"
+        Me.lblFilePath.Size = New System.Drawing.Size(48, 13)
+        Me.lblFilePath.TabIndex = 4
+        Me.lblFilePath.Text = "File Path"
         '
         'frmStart
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(321, 92)
+        Me.ClientSize = New System.Drawing.Size(321, 184)
+        Me.Controls.Add(Me.lblFilePath)
         Me.Controls.Add(Me.btnDataBase)
-        Me.Controls.Add(Me.Button2)
-        Me.Controls.Add(Me.Button1)
+        Me.Controls.Add(Me.btnSearch)
+        Me.Controls.Add(Me.btnNew)
         Me.Name = "frmStart"
         Me.Text = "Welcome"
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 
-    Friend WithEvents Button1 As Button
-    Friend WithEvents Button2 As Button
+    Friend WithEvents btnNew As Button
+    Friend WithEvents btnSearch As Button
     Friend WithEvents btnDataBase As System.Windows.Forms.Button
+    Friend WithEvents ofdDatabase As System.Windows.Forms.OpenFileDialog
+    Friend WithEvents lblFilePath As System.Windows.Forms.Label
 End Class

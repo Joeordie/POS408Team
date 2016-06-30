@@ -2,9 +2,6 @@
 
     Dim intContactUUID As Integer
 
-    Private Sub frmEdit_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
-    End Sub
 
     Private Sub btnBack_Click(sender As Object, e As EventArgs) Handles btnBack.Click
         My.Forms.frmStart.Show()
@@ -67,6 +64,7 @@
     End Function
 
 
+
 End Class
 
 
@@ -92,6 +90,6 @@ Public Class DisplaySet
         strCompanyAddress = CA
     End Sub
 
-
+    
 
 End Class
