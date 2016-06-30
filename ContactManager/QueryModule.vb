@@ -1,7 +1,8 @@
 ﻿Module QueryModule
+    'sets the srtDataBaseFileLocation to the lblFilePath.Text that the user selected on the start page
+    Public strDataBaseFileLocation As String = frmStart.lblFilePath.Text
 
-    Public strDataBaseFileLocation As String = "C:\Users\carro\Downloads\Contacts.accdb"
-
+    'strFilePath = strFilePath = frmStart.txtDatabase.text 
     Public Function input(QuerySet As Object) As Integer
         'This Class-less function directs QuerySet objects where they are directed
         Dim intExitCode As Integer = 1
@@ -221,6 +222,7 @@
 
 
         End Sub
+
 
     End Class
 
