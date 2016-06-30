@@ -97,6 +97,6 @@ Public Class DisplaySet
         strCompanyAddress = CA
     End Sub
 
-    
+
 
 End Class

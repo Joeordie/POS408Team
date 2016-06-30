@@ -8,6 +8,7 @@
         If lblFilePath.Text = "File Path" Then
             MessageBox.Show("Please Select a Database file path before proceeding")
         Else
+            frmEdit.intContactUUID = 0
             My.Forms.frmEdit.Show()
             Me.Hide()
         End If

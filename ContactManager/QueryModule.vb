@@ -77,11 +77,9 @@
             If strSearchField = "ID" Then
                 'SQL Statement Constructor
                 strSQLStatement = ("SELECT * FROM Table1 WHERE " & strSearchField & "=" & StrSearchCriterion & ";")
-
             Else
                 'SQL Statement Constructor
                 strSQLStatement = ("SELECT * FROM Table1 WHERE " & strSearchField & " LIKE '" & StrSearchCriterion & "%';")
-
             End If
             'Send to database connection
             searchConnection.send(strSQLStatement, "read")
@@ -89,57 +87,63 @@
         End Sub
 
         Private Sub SQLAll()
-            'PreBuilt SQL Statement
+            'PreBuilt SQL Statement for returning all results
             strSQLStatement = "SELECT * FROM Table1"
-            searchConnection.send(strSQLStatement, "read")
+            searchConnection.send(strSQLStatement, "read") 'send sqlstatement to interface
         End Sub
 
     End Class
 
     Public Class WriteBuild
+
         Public Function Load(QuerySet As Object) As Integer
+            'Declare Variables and cast QuerySet attributes into variables!
             Dim writeConnection = New SQLInterface
             Dim strSQLStatement As String
-            Dim intExitCode As Integer = 0
-            Dim intContactUUID = frmEdit.intContactUUID
+            Dim intExitCode As Integer = 0 'Exit Code to be passed back to start
+            Dim intContactUUID = frmEdit.intContactUUID 'HouseKeeping!!!
             Dim strFN As String = QuerySet.strFName
             Dim strLN As String = QuerySet.strLName
             Dim strComp As String = QuerySet.strCompanyName
             Dim strPhone As String = QuerySet.strPhone
             Dim strEmail As String = QuerySet.strEmail
             Dim strCompLit As String = QuerySet.strCompanyAdd
-            Dim strCompZip As String = strCompLit.Substring(Len(strCompLit) - 5)
-
-            Dim strCompAdd = strCompLit.Substring(0, (Len(strCompLit) - 5))
-
-            'Dim strSQLStatement As String = "s"
+            Dim strCompZip As String
+            Dim strCompAdd As String
+            'Need to split up Address block into seperate datafields: 
+            If Len(strCompLit) > 5 Then 'Prevent Exception by checking length of AddressLiteral
+                strCompZip = strCompLit.Substring(Len(strCompLit) - 5) 'set zip code as last 5 chars in address literal
+                strCompAdd = strCompLit.Substring(0, (Len(strCompLit) - 5)) 'grab the rest of the literal as the address string
+            Else 'If your address string is less than 5 characters the above section wont work, and were going to set the address to "Empty"
+                MessageBox.Show("really?")
+                strCompZip = "Empty"
+                strCompAdd = "Empty"
+            End If
+            'Decision for flow control "new" records use the INSERT INTO sql statement, which has different argument order than update.... annoying. 
             If QuerySet.strPurpose = "new" Then
                 strSQLStatement = ("INSERT INTO Table1 (FirstName,LastName,Company,PhoneNumber,EMail,Address,Zip) VALUES('" & strFN & "','" & strLN & _
                                                  "','" & strComp & "','" & strPhone & "','" & strEmail & "','" & strCompAdd & "','" & strCompZip & "');")
-                writeConnection.send(strSQLStatement, "new")
+                writeConnection.send(strSQLStatement, "new") 'send sql statement to interface "writeConnection" with "new" flag. 
                 intExitCode = 0
             ElseIf QuerySet.strPurpose = "write" Then
                 strSQLStatement = ("UPDATE Table1 SET FirstName='" & strFN & "',LastName='" & strLN & "',Company='" & strComp & "',PhoneNumber='" & strPhone & _
                                    "',EMail='" & strEmail & "',Address='" & strCompAdd & "',Zip='" & strCompZip & "' WHERE ID=" & intContactUUID & ";")
-                writeConnection.send(strSQLStatement, "write")
+                writeConnection.send(strSQLStatement, "write") 'send sql statemetn to interface "writeConnection" with "write" flag. 
                 intExitCode = 0
             End If
 
-
-            Return intExitCode
+            Return intExitCode 'send exit code back no longer needed could be removed. 
         End Function
-    End Class
-
-    Public Class MultiResultSet
 
     End Class
 
     Public Class SQLInterface
+        'This is the only way to connect to the database.  Using more cannonic SQL commands because working with Access commands is not really good training for real databases. 
         ' Alot is taken from: http://www.homeandlearn.co.uk/NET/nets12p4.html
-        Dim dbConnection As New OleDb.OleDbConnection
-        Dim strDBConDetails As String = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & strDataBaseFileLocation
-        Dim objDataSet As New DataSet
-        Dim objDataAdapter As OleDb.OleDbDataAdapter
+        Dim dbConnection As New OleDb.OleDbConnection 'Create Connection Object
+        Dim strDBConDetails As String = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & strDataBaseFileLocation 'Pass connection details to connection object
+        Dim objDataSet As New DataSet 'Create DataSet object to contain record info after retrieval
+        Dim objDataAdapter As OleDb.OleDbDataAdapter 'Create adapter object to connect dbConnection to DataSet
 
         Public Sub send(strSQLStatement As String, strPurpose As String)
             'Dial up DB connection
@@ -159,7 +163,7 @@
                     Dim intlastRow = (objDataSet.Tables("SearchResultSet").Rows.Count) - 1
                     'if there is more than one [0] results we use the multi record screen
                     If intlastRow > 1 Then
-                        'Set string assmebly var
+                        'Set string assmebly variable
                         Dim strResultLine As String = ""
                         'clear last set of results
                         frmMulti.clear()
@@ -213,19 +217,14 @@
                 dbConnection.Close()
                 'Notify user of success!
                 MessageBox.Show("boom!!! you deleted that junk son!")
-            ElseIf strPurpose = "write" Or strPurpose = "new" Then
+            ElseIf strPurpose = "write" Or strPurpose = "new" Then 'Virtually the same as above. 
                 Dim objCmd As New OleDb.OleDbCommand(strSQLStatement, dbConnection)
                 objCmd.ExecuteNonQuery()
                 dbConnection.Close()
                 MessageBox.Show("you should have written to the database")
             End If
-
-
         End Sub
 
-
     End Class
-
-
 
 End Module

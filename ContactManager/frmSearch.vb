@@ -84,6 +84,7 @@ Public Class QuerySet
         strPhone = P
         strCompanyName = CN
         strCompanyAdd = CA
+        UUID = frmEdit.intContactUUID
     End Sub
 
     'Private Sub frmSearch_Closing(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles Me.Closing
