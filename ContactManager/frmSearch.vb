@@ -53,20 +53,10 @@ Public Class frmSearch
         Dim queryset As New QuerySet
         'Load Phase!
         queryset.Loader(tbxFirstName.Text, tbxLastName.Text, tbxEmail.Text, _
-            tbxPhone.Text, tbxCompanyName.Text)
+            tbxPhone.Text, tbxCompanyName.Text, tbxCompanyAddr.Text)
+        queryset.strPurpose = "search"
         'Transport Phase!
-        Dim intSuccess As Integer
-
-        intSuccess = QueryModule.input(queryset)
-        If intSuccess = 0 Then
-            'Do nothing it worked!
-            Me.Hide()
-        Else
-            MessageBox.Show("Ut-oh you have recieved an error code: " & intSuccess)
-        End If
-
-
-
+        QueryModule.input(queryset)
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
@@ -83,15 +73,17 @@ Public Class QuerySet
     Public strEmail As String
     Public strPhone As String
     Public strCompanyName As String
-    Public strPurpose As String = "search"
+    Public strCompanyAdd As String
+    Public strPurpose As String
 
     'Routine to load variables
-    Public Sub Loader(F As String, L As String, E As String, P As String, CN As String)
+    Public Sub Loader(F As String, L As String, E As String, P As String, CN As String, CA As String)
         strFName = F
         strLName = L
         strEmail = E
         strPhone = P
         strCompanyName = CN
+        strCompanyAdd = CA
     End Sub
 
 End Class

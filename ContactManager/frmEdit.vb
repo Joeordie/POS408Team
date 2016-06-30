@@ -1,6 +1,8 @@
 ﻿Public Class frmEdit
 
-    Dim intContactUUID As Integer
+    Dim strEditMode As String = "new"
+
+    Public intContactUUID As Integer
 
     Private Sub frmEdit_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
@@ -12,7 +14,10 @@
     End Sub
 
     Private Sub btnEdit_Click(sender As Object, e As EventArgs) Handles btnEdit.Click
-
+        Dim queryset As New QuerySet
+        queryset.Loader(txtFirstName.Text, txtLastName.Text, TxtEmail.Text, txtPhone.Text, txtCompanyName.Text, txtCompanyAddr.Text)
+        queryset.strPurpose = strEditMode
+        Dim intExitCode As Integer = QueryModule.input(queryset)
     End Sub
 
     Private Sub btnRemove_Click(sender As Object, e As EventArgs) Handles btnRemove.Click
@@ -35,7 +40,8 @@
         'Construction Phase
         Dim queryset As New QuerySet
         'Load Phase!
-        queryset.Loader(txtFirstName.Text, txtLastName.Text, TxtEmail.Text, txtPhone.Text, txtCompanyName.Text)
+        queryset.Loader(txtFirstName.Text, txtLastName.Text, TxtEmail.Text, txtPhone.Text, txtCompanyName.Text, txtCompanyAddr.Text)
+        queryset.UUID = intContactUUID
         'Transport Phase!
         Dim intSuccess As Integer
 
@@ -49,8 +55,9 @@
 
     Public Function Display(DisplaySet As Object)
         Dim intExitCode As Integer = 1
-        If DisplaySet.intUUID > -1 Then
+        If DisplaySet.intUUID > 0 Then
             tbxUUID.Text = DisplaySet.intUUID
+            strEditMode = "write"
             txtFirstName.Text = DisplaySet.strFName
             txtLastName.Text = DisplaySet.strLName
             TxtEmail.Text = DisplaySet.strEmail

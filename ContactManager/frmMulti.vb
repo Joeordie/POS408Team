@@ -1,7 +1,5 @@
 ﻿Public Class frmMulti
 
-
-
     Public Sub clear()
         lstMultipleResults.Items.Clear()
     End Sub
@@ -9,8 +7,6 @@
     Public Sub ResultLoad(strResultLine As String)
         lstMultipleResults.Items.Add(strResultLine)
     End Sub
-
-
 
     Private Sub btnBack_Click(sender As Object, e As EventArgs) Handles btnMultiBack.Click
         My.Forms.frmSearch.Show()
@@ -28,6 +24,7 @@
             Dim intSelectedUUID = Convert.ToInt16(strSelectedUUID)
             Dim queryset As New QuerySet
             queryset.UUID = intSelectedUUID
+            queryset.strPurpose = "search"
             QueryModule.input(queryset)
             Me.Hide()
         End If

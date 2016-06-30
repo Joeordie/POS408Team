@@ -9,10 +9,9 @@
         If QuerySet.strPurpose = "search" Then
             Dim objSearchBuild As New SearchBuild
             intExitCode = objSearchBuild.Load(QuerySet)
-        ElseIf QuerySet.strPurpose = "write" Then
-            'Do something with WriterBuild Class
-            'Dim objWriteBuild As New WriteBuild
-            'intExitCode = objWriteBuild.Loader(QuerySet)
+        ElseIf QuerySet.strPurpose = "write" Or QuerySet.strPurpose = "new" Then
+            Dim objWriteBuild As New WriteBuild
+            intExitCode = objWriteBuild.Load(QuerySet)
         ElseIf QuerySet.strPurpose = "delete" Then
             intExitCode = 1
             Dim intUUID As Integer = QuerySet.UUID
@@ -47,8 +46,8 @@
         End Function
         Private Sub SQLMagic(QuerySet As Object)
             'These are the variables we have to stearch by
-            Dim strSearchField As String
-            Dim StrSearchCriterion As String
+            Dim strSearchField As String = ""
+            Dim StrSearchCriterion As String = ""
             'Repeating If for length of Fields, in order of operations'
             'Then set the appropriate Database Field name and pass criteron to SQL Like Statement
             'Trim Statements are to pull off whitespace
@@ -92,15 +91,40 @@
             'PreBuilt SQL Statement
             strSQLStatement = "SELECT * FROM Table1"
             searchConnection.send(strSQLStatement, "read")
-            MessageBox.Show(strSQLStatement)
         End Sub
 
     End Class
 
     Public Class WriteBuild
-        Public Function Loader(QuerySet As Object) As Integer
+        Public Function Load(QuerySet As Object) As Integer
+            Dim writeConnection = New SQLInterface
+            Dim strSQLStatement As String
             Dim intExitCode As Integer = 0
-            MessageBox.Show("you are writing")
+            Dim intContactUUID = frmEdit.intContactUUID
+            Dim strFN As String = QuerySet.strFName
+            Dim strLN As String = QuerySet.strLName
+            Dim strComp As String = QuerySet.strCompanyName
+            Dim strPhone As String = QuerySet.strPhone
+            Dim strEmail As String = QuerySet.strEmail
+            Dim strCompLit As String = QuerySet.strCompanyAdd
+            Dim strCompZip As String = strCompLit.Substring(Len(strCompLit) - 5)
+
+            Dim strCompAdd = strCompLit.Substring(0, (Len(strCompLit) - 5))
+
+            'Dim strSQLStatement As String = "s"
+            If QuerySet.strPurpose = "new" Then
+                strSQLStatement = ("INSERT INTO Table1 (FirstName,LastName,Company,PhoneNumber,EMail,Address,Zip) VALUES('" & strFN & "','" & strLN & _
+                                                 "','" & strComp & "','" & strPhone & "','" & strEmail & "','" & strCompAdd & "','" & strCompZip & "');")
+                writeConnection.send(strSQLStatement, "new")
+                intExitCode = 0
+            ElseIf QuerySet.strPurpose = "write" Then
+                strSQLStatement = ("UPDATE Table1 SET FirstName='" & strFN & "',LastName='" & strLN & "',Company='" & strComp & "',PhoneNumber='" & strPhone & _
+                                   "',EMail='" & strEmail & "',Address='" & strCompAdd & "',Zip='" & strCompZip & "' WHERE ID=" & intContactUUID & ";")
+                writeConnection.send(strSQLStatement, "write")
+                intExitCode = 0
+            End If
+
+
             Return intExitCode
         End Function
     End Class
@@ -162,6 +186,7 @@
                         'load record set Loader Sub will not work directly because of the objDataSet.Tables reference
                         'must be cast :(
                         Dim intUUID As Integer = objDataSet.Tables("SearchResultSet").Rows(0).Item(0)
+                        frmEdit.intContactUUID = intUUID
                         Dim strFName As String = objDataSet.Tables("SearchResultSet").Rows(0).Item(1)
                         Dim strLName As String = objDataSet.Tables("SearchResultSet").Rows(0).Item(2)
                         Dim strCompanyName As String = objDataSet.Tables("SearchResultSet").Rows(0).Item(3)
@@ -177,8 +202,6 @@
                     MessageBox.Show("No Records Available") 'Not the greatest pop up but it so far has been accurate
                     frmSearch.Show() 'Since you couldnt get it done show the search form again
                 End Try
-            ElseIf strPurpose = "write" Then
-                MessageBox.Show("you should have written to the database")
             ElseIf strPurpose = "delete" Then
                 'This is different than SQL Query functions above.
                 'Create a objCmd object with the SQL statement created in the QueryModule.input() and attach the approprate dbConnection variable crafted in this class
@@ -189,6 +212,11 @@
                 dbConnection.Close()
                 'Notify user of success!
                 MessageBox.Show("boom!!! you deleted that junk son!")
+            ElseIf strPurpose = "write" Or strPurpose = "new" Then
+                Dim objCmd As New OleDb.OleDbCommand(strSQLStatement, dbConnection)
+                objCmd.ExecuteNonQuery()
+                dbConnection.Close()
+                MessageBox.Show("you should have written to the database")
             End If
 
 
