@@ -13,7 +13,7 @@
         Me.Close()
     End Sub
 
-    Private Sub btnSelect_Click(sender As Object, e As EventArgs) Handles btnSelect.Click
+    Private Sub btnSelect_Click(sender As Object, e As EventArgs) Handles btnSelect.Click, lstMultipleResults.DoubleClick
         'lstMultipleResults.SelectedIndex()
         'Verify that an item was selected
         If lstMultipleResults.SelectedIndex = -1 Then
@@ -37,4 +37,6 @@
         My.Forms.frmSearch.Show()
 
     End Sub
+
+   
 End Class
