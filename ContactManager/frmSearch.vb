@@ -42,6 +42,10 @@ Public Class frmSearch
         End If
     End Sub
 
+    Private Sub frmSearch_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
+        frmStart.Show()
+    End Sub
+
     
     Private Sub frmSearch_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
@@ -94,7 +98,7 @@ Public Class QuerySet
         strCompanyName = CN
     End Sub
 
-    'Private Sub frmSearch_Closing(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles Me.Closing
+    'Private Sub frmSearch_Closing(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles Me.formClosing
     '    frmStart.Show()
     'End Sub
 End Class

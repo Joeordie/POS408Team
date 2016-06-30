@@ -65,6 +65,9 @@
 
 
 
+    Private Sub frmEdit_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
+        frmStart.Show()
+    End Sub
 End Class
 
 
