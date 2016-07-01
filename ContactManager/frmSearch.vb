@@ -93,7 +93,5 @@ Public Class QuerySet
         UUID = frmEdit.intContactUUID
     End Sub
 
-    'Private Sub frmSearch_Closing(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles Me.Closing
-    '    frmStart.Show()
-    'End Sub
+    
 End Class

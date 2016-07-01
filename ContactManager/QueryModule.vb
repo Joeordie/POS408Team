@@ -117,7 +117,7 @@
                 strCompZip = strCompLit.Substring(Len(strCompLit) - 5) 'set zip code as last 5 chars in address literal
                 strCompAdd = strCompLit.Substring(0, (Len(strCompLit) - 5)) 'grab the rest of the literal as the address string
             Else 'If your address string is less than 5 characters the above section wont work, and were going to set the address to "Empty"
-                MessageBox.Show("really?")
+                MessageBox.Show("You did not enter a valid address ending in a 5 digit zip code, your address will be stored as empty.")
                 strCompZip = "Empty"
                 strCompAdd = "Empty"
             End If
@@ -223,7 +223,7 @@
                 Dim objCmd As New OleDb.OleDbCommand(strSQLStatement, dbConnection)
                 objCmd.ExecuteNonQuery()
                 dbConnection.Close()
-                MessageBox.Show("you should have written to the database")
+                MessageBox.Show("You have written to the database")
             End If
         End Sub
 
