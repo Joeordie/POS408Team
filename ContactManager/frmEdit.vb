@@ -9,10 +9,10 @@
         My.Forms.frmStart.Show()
         Me.Close()
     End Sub
-
+    'look at this
     Private Sub btnEdit_Click(sender As Object, e As EventArgs) Handles btnEdit.Click
         Dim queryset As New QuerySet
-        queryset.Loader(txtFirstName.Text, txtLastName.Text, TxtEmail.Text, txtPhone.Text, txtCompanyName.Text, txtCompanyAddr.Text)
+        queryset.Loader(txtFirstName.Text, txtLastName.Text, txtEmail.Text, txtPhone.Text, txtCompanyName.Text, txtCompanyAddr.Text)
         queryset.strPurpose = strEditMode
         Dim intExitCode As Integer = QueryModule.input(queryset)
     End Sub
@@ -23,13 +23,19 @@
             Dim queryset As New QuerySet
             queryset.UUID = intContactUUID
             queryset.strPurpose = "delete"
-            Me.Close()
+            txtFirstName.Clear()
+            txtLastName.Clear()
+            txtCompanyAddr.Clear()
+            txtPhone.Clear()
+            txtCompanyName.Clear()
+            txtEmail.Clear()
+            Me.Hide()
             frmSearch.Show()
             QueryModule.input(queryset)
         ElseIf intContactUUID <= 0 Then
             MessageBox.Show("there is no record selected")
         End If
-        intContactUUID = 0
+
     End Sub
 
     Private Sub querytransport()
@@ -37,7 +43,7 @@
         'Construction Phase
         Dim queryset As New QuerySet
         'Load Phase!
-        queryset.Loader(txtFirstName.Text, txtLastName.Text, TxtEmail.Text, txtPhone.Text, txtCompanyName.Text, txtCompanyAddr.Text)
+        queryset.Loader(txtFirstName.Text, txtLastName.Text, txtEmail.Text, txtPhone.Text, txtCompanyName.Text, txtCompanyAddr.Text)
         queryset.UUID = intContactUUID
         'Transport Phase!
         Dim intSuccess As Integer
@@ -57,11 +63,12 @@
             strEditMode = "write"
             txtFirstName.Text = DisplaySet.strFName
             txtLastName.Text = DisplaySet.strLName
-            TxtEmail.Text = DisplaySet.strEmail
+            txtEmail.Text = DisplaySet.strEmail
             txtPhone.Text = DisplaySet.strPhone
             txtCompanyName.Text = DisplaySet.strCompanyName
             txtCompanyAddr.Text = DisplaySet.strCompanyAddress
             'Might not be needed now
+            intContactUUID = DisplaySet.intUUID
             intExitCode = 0
             Me.Show()
         End If
@@ -71,6 +78,10 @@
 
 
 
+
+    Private Sub frmEdit_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
+        My.Forms.frmStart.Show()
+    End Sub
 End Class
 
 

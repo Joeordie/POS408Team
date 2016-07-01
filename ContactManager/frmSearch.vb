@@ -43,9 +43,7 @@ Public Class frmSearch
     End Sub
 
     
-    Private Sub frmSearch_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-    End Sub
 
     Private Sub querytransport()
         'lets load this sucker up with the QuerySeyClass! 
@@ -62,6 +60,14 @@ Public Class frmSearch
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         querytransport()
     End Sub
+
+    Private Sub frmSearch_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
+
+        My.Forms.frmStart.Show()
+
+    End Sub
+
+
 End Class
 
 
