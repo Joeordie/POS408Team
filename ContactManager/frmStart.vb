@@ -21,6 +21,7 @@
 
             My.Forms.frmSearch.Show()
             Me.Hide()
+            frmEdit.intContactUUID = 0
 
         End If
 

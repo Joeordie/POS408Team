@@ -19,6 +19,8 @@
             Dim strSQLStatement As String = ("DELETE FROM Table1 WHERE " & "ID" & "=" & intUUID & ";")
             Dim SQLInterface As New SQLInterface
             SQLInterface.send(strSQLStatement, "delete")
+            'call frmEdit.clear()
+            frmEdit.intContactUUID = 0
         End If
 
         Return intExitCode

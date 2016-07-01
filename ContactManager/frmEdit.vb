@@ -23,13 +23,13 @@
             Dim queryset As New QuerySet
             queryset.UUID = intContactUUID
             queryset.strPurpose = "delete"
-            Me.Hide()
+            Me.Close()
             frmSearch.Show()
             QueryModule.input(queryset)
         ElseIf intContactUUID <= 0 Then
             MessageBox.Show("there is no record selected")
         End If
-
+        intContactUUID = 0
     End Sub
 
     Private Sub querytransport()
@@ -62,7 +62,6 @@
             txtCompanyName.Text = DisplaySet.strCompanyName
             txtCompanyAddr.Text = DisplaySet.strCompanyAddress
             'Might not be needed now
-            intContactUUID = DisplaySet.intUUID
             intExitCode = 0
             Me.Show()
         End If
