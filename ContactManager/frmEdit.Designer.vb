@@ -25,7 +25,7 @@ Partial Class frmEdit
         Me.grpPersonal = New System.Windows.Forms.GroupBox()
         Me.txtPhone = New System.Windows.Forms.TextBox()
         Me.lblPhone = New System.Windows.Forms.Label()
-        Me.TxtEmail = New System.Windows.Forms.TextBox()
+        Me.txtEmail = New System.Windows.Forms.TextBox()
         Me.txtLastName = New System.Windows.Forms.TextBox()
         Me.txtFirstName = New System.Windows.Forms.TextBox()
         Me.lblEmail = New System.Windows.Forms.Label()
@@ -49,7 +49,7 @@ Partial Class frmEdit
         Me.grpPersonal.BackColor = System.Drawing.SystemColors.GradientActiveCaption
         Me.grpPersonal.Controls.Add(Me.txtPhone)
         Me.grpPersonal.Controls.Add(Me.lblPhone)
-        Me.grpPersonal.Controls.Add(Me.TxtEmail)
+        Me.grpPersonal.Controls.Add(Me.txtEmail)
         Me.grpPersonal.Controls.Add(Me.txtLastName)
         Me.grpPersonal.Controls.Add(Me.txtFirstName)
         Me.grpPersonal.Controls.Add(Me.lblEmail)
@@ -80,12 +80,12 @@ Partial Class frmEdit
         Me.lblPhone.TabIndex = 0
         Me.lblPhone.Text = "Phone"
         '
-        'TxtEmail
+        'txtEmail
         '
-        Me.TxtEmail.Location = New System.Drawing.Point(79, 88)
-        Me.TxtEmail.Name = "TxtEmail"
-        Me.TxtEmail.Size = New System.Drawing.Size(246, 22)
-        Me.TxtEmail.TabIndex = 5
+        Me.txtEmail.Location = New System.Drawing.Point(79, 88)
+        Me.txtEmail.Name = "txtEmail"
+        Me.txtEmail.Size = New System.Drawing.Size(246, 22)
+        Me.txtEmail.TabIndex = 5
         '
         'txtLastName
         '
@@ -228,7 +228,7 @@ Partial Class frmEdit
         Me.Controls.Add(Me.grpCompany)
         Me.Controls.Add(Me.grpPersonal)
         Me.Name = "frmEdit"
-        Me.Text = "Form1"
+        Me.Text = "Edit Form"
         Me.grpPersonal.ResumeLayout(False)
         Me.grpPersonal.PerformLayout()
         Me.grpCompany.ResumeLayout(False)
@@ -240,7 +240,7 @@ Partial Class frmEdit
     Friend WithEvents grpPersonal As System.Windows.Forms.GroupBox
     Friend WithEvents txtPhone As System.Windows.Forms.TextBox
     Friend WithEvents lblPhone As System.Windows.Forms.Label
-    Friend WithEvents TxtEmail As System.Windows.Forms.TextBox
+    Friend WithEvents txtEmail As System.Windows.Forms.TextBox
     Friend WithEvents txtLastName As System.Windows.Forms.TextBox
     Friend WithEvents txtFirstName As System.Windows.Forms.TextBox
     Friend WithEvents lblEmail As System.Windows.Forms.Label
