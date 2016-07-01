@@ -27,6 +27,7 @@ Partial Class frmStart
         Me.btnDataBase = New System.Windows.Forms.Button()
         Me.ofdDatabase = New System.Windows.Forms.OpenFileDialog()
         Me.lblFilePath = New System.Windows.Forms.Label()
+        Me.btnClose = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'btnNew
@@ -49,7 +50,7 @@ Partial Class frmStart
         '
         'btnDataBase
         '
-        Me.btnDataBase.Location = New System.Drawing.Point(115, 74)
+        Me.btnDataBase.Location = New System.Drawing.Point(12, 78)
         Me.btnDataBase.Name = "btnDataBase"
         Me.btnDataBase.Size = New System.Drawing.Size(91, 60)
         Me.btnDataBase.TabIndex = 2
@@ -69,11 +70,21 @@ Partial Class frmStart
         Me.lblFilePath.TabIndex = 4
         Me.lblFilePath.Text = "File Path"
         '
+        'btnClose
+        '
+        Me.btnClose.Location = New System.Drawing.Point(218, 78)
+        Me.btnClose.Name = "btnClose"
+        Me.btnClose.Size = New System.Drawing.Size(91, 60)
+        Me.btnClose.TabIndex = 5
+        Me.btnClose.Text = "Exit"
+        Me.btnClose.UseVisualStyleBackColor = True
+        '
         'frmStart
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(321, 184)
+        Me.Controls.Add(Me.btnClose)
         Me.Controls.Add(Me.lblFilePath)
         Me.Controls.Add(Me.btnDataBase)
         Me.Controls.Add(Me.btnSearch)
@@ -90,4 +101,5 @@ Partial Class frmStart
     Friend WithEvents btnDataBase As System.Windows.Forms.Button
     Friend WithEvents ofdDatabase As System.Windows.Forms.OpenFileDialog
     Friend WithEvents lblFilePath As System.Windows.Forms.Label
+    Friend WithEvents btnClose As System.Windows.Forms.Button
 End Class

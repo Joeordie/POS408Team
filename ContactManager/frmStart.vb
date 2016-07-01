@@ -37,6 +37,11 @@
 
     End Sub
 
+    Private Sub frmStart_FormClosed(sender As Object, e As System.Windows.Forms.FormClosedEventArgs) Handles Me.FormClosed
+        End
+    End Sub
     
-    
+    'Private Sub btnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
+    '    Me.Close()
+    'End Sub
 End Class
