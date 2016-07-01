@@ -37,11 +37,13 @@
 
     End Sub
 
+    'Is needed to terminate the application.  There was an issue in which the program would hang in the background when the frmStart was closed
     Private Sub frmStart_FormClosed(sender As Object, e As System.Windows.Forms.FormClosedEventArgs) Handles Me.FormClosed
         End
     End Sub
     
-    'Private Sub btnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
-    '    Me.Close()
-    'End Sub
+    
+    Private Sub btnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
+        Me.Close()
+    End Sub
 End Class
