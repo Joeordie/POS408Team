@@ -9,7 +9,7 @@
         My.Forms.frmStart.Show()
         Me.Close()
     End Sub
-
+    'look at this
     Private Sub btnEdit_Click(sender As Object, e As EventArgs) Handles btnEdit.Click
         Dim queryset As New QuerySet
         queryset.Loader(txtFirstName.Text, txtLastName.Text, TxtEmail.Text, txtPhone.Text, txtCompanyName.Text, txtCompanyAddr.Text)
