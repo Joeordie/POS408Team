@@ -28,6 +28,7 @@
             txtCompanyAddr.Clear()
             txtPhone.Clear()
             txtCompanyName.Clear()
+            txtEmail.Clear()
             Me.Hide()
             frmSearch.Show()
             QueryModule.input(queryset)
