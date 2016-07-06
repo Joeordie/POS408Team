@@ -38,6 +38,7 @@ Partial Class frmSearch
         Me.lblCompanyName = New System.Windows.Forms.Label()
         Me.btnBack = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
+        Me.lblSearchable = New System.Windows.Forms.Label()
         Me.grpPersonal.SuspendLayout()
         Me.grpCompany.SuspendLayout()
         Me.SuspendLayout()
@@ -48,9 +49,9 @@ Partial Class frmSearch
         Me.lblFirstName.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblFirstName.Location = New System.Drawing.Point(6, 28)
         Me.lblFirstName.Name = "lblFirstName"
-        Me.lblFirstName.Size = New System.Drawing.Size(67, 15)
+        Me.lblFirstName.Size = New System.Drawing.Size(75, 15)
         Me.lblFirstName.TabIndex = 0
-        Me.lblFirstName.Text = "First Name"
+        Me.lblFirstName.Text = "First Name *"
         '
         'lblLastName
         '
@@ -58,13 +59,14 @@ Partial Class frmSearch
         Me.lblLastName.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblLastName.Location = New System.Drawing.Point(354, 28)
         Me.lblLastName.Name = "lblLastName"
-        Me.lblLastName.Size = New System.Drawing.Size(67, 15)
+        Me.lblLastName.Size = New System.Drawing.Size(75, 15)
         Me.lblLastName.TabIndex = 1
-        Me.lblLastName.Text = "Last Name"
+        Me.lblLastName.Text = "Last Name *"
         '
         'grpPersonal
         '
         Me.grpPersonal.BackColor = System.Drawing.SystemColors.GradientActiveCaption
+        Me.grpPersonal.Controls.Add(Me.lblSearchable)
         Me.grpPersonal.Controls.Add(Me.tbxPhone)
         Me.grpPersonal.Controls.Add(Me.lblPhone)
         Me.grpPersonal.Controls.Add(Me.tbxEmail)
@@ -94,9 +96,9 @@ Partial Class frmSearch
         Me.lblPhone.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblPhone.Location = New System.Drawing.Point(354, 91)
         Me.lblPhone.Name = "lblPhone"
-        Me.lblPhone.Size = New System.Drawing.Size(43, 15)
+        Me.lblPhone.Size = New System.Drawing.Size(51, 15)
         Me.lblPhone.TabIndex = 0
-        Me.lblPhone.Text = "Phone"
+        Me.lblPhone.Text = "Phone *"
         '
         'tbxEmail
         '
@@ -125,9 +127,9 @@ Partial Class frmSearch
         Me.lblEmail.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblEmail.Location = New System.Drawing.Point(6, 88)
         Me.lblEmail.Name = "lblEmail"
-        Me.lblEmail.Size = New System.Drawing.Size(39, 15)
+        Me.lblEmail.Size = New System.Drawing.Size(47, 15)
         Me.lblEmail.TabIndex = 2
-        Me.lblEmail.Text = "Email"
+        Me.lblEmail.Text = "Email *"
         '
         'grpCompany
         '
@@ -175,9 +177,9 @@ Partial Class frmSearch
         Me.lblCompanyName.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblCompanyName.Location = New System.Drawing.Point(9, 36)
         Me.lblCompanyName.Name = "lblCompanyName"
-        Me.lblCompanyName.Size = New System.Drawing.Size(96, 15)
+        Me.lblCompanyName.Size = New System.Drawing.Size(104, 15)
         Me.lblCompanyName.TabIndex = 0
-        Me.lblCompanyName.Text = "Company Name"
+        Me.lblCompanyName.Text = "Company Name *"
         '
         'btnBack
         '
@@ -196,6 +198,15 @@ Partial Class frmSearch
         Me.Button2.TabIndex = 10
         Me.Button2.Text = "Search"
         Me.Button2.UseVisualStyleBackColor = True
+        '
+        'lblSearchable
+        '
+        Me.lblSearchable.AutoSize = True
+        Me.lblSearchable.Location = New System.Drawing.Point(260, 122)
+        Me.lblSearchable.Name = "lblSearchable"
+        Me.lblSearchable.Size = New System.Drawing.Size(199, 16)
+        Me.lblSearchable.TabIndex = 11
+        Me.lblSearchable.Text = "* Denotes Searchable Field"
         '
         'frmSearch
         '
@@ -232,4 +243,5 @@ Partial Class frmSearch
     Friend WithEvents lblCompanyName As Label
     Friend WithEvents btnBack As Button
     Friend WithEvents Button2 As Button
+    Friend WithEvents lblSearchable As System.Windows.Forms.Label
 End Class
