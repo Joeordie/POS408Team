@@ -9,6 +9,8 @@ The Code must be written in VisualBASIC.Net
 
 1. Read from a Database --100%--
 
-2. Display Multiple Results 90%
+2. Display Multiple Results 100%
 
-3.  Enter New Data 5%
+3.  Enter New Data 100%
+
+##Project Complete!!!!
